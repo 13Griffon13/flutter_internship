@@ -17,12 +17,17 @@ class RecipeDetail extends StatelessWidget {
         body: CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: 280.0,
+          iconTheme: const IconThemeData(
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.transparent,
+          expandedHeight: 320.0,
           flexibleSpace: FlexibleSpaceBar(
-            title: Hero(
+            background: Hero(
               tag: '${HeroTags.recipeDetail}_${recipeEntity.label}',
               child: Image.network(recipeEntity.image),
             ),
+
           ),
         ),
         SliverToBoxAdapter(
@@ -32,11 +37,19 @@ class RecipeDetail extends StatelessWidget {
               vertical: 8.0,
             ),
             child: Text(
-              recipeEntity.ingredientLines.toString(),
+              _formatIngredient(recipeEntity.ingredientLines),
             ),
           ),
         ),
       ],
     ));
+  }
+  
+  String _formatIngredient(List<String> ingredientLines){
+    var result = '';
+    for(var ingredient in ingredientLines){
+      result+= '$ingredient\n';
+    }
+    return result;
   }
 }
