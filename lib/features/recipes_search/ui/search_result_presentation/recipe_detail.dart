@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:internship_final_recipes/features/recipes_search/domain/entities/recipe_entity.dart';
 
-import '../../../util/hero_tags.dart';
+import '../../../../util/hero_tags.dart';
 
 class RecipeDetail extends StatelessWidget {
   final RecipeEntity recipeEntity;

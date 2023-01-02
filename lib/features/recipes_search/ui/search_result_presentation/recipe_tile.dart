@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:internship_final_recipes/features/recipes_search/domain/entities/recipe_entity.dart';
-import 'package:internship_final_recipes/features/recipes_search/ui/recipe_detail.dart';
+import 'package:internship_final_recipes/features/recipes_search/ui/search_result_presentation/recipe_detail.dart';
 import 'package:internship_final_recipes/util/hero_tags.dart';
 
 class RecipeTile extends StatelessWidget {

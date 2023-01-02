@@ -3,4 +3,12 @@ class LocaleStrings{
     return 'Recipes';
   }
 
+  static String searchHint(){
+    return 'Search';
+  }
+
+  static String emptySearch(){
+    return 'Nothing here';
+  }
+
 }
