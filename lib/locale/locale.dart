@@ -11,4 +11,12 @@ class LocaleStrings{
     return 'Nothing here';
   }
 
+  static String menuHistory(){
+    return 'History';
+  }
+
+  static String menuAbout(){
+    return 'About app';
+  }
+
 }

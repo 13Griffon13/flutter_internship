@@ -10,6 +10,30 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Text(LocaleStrings.menuHistory()),
+                ),
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Text(LocaleStrings.menuAbout()),
+                ),
+              ];
+            },
+            onSelected: (selectedIndex){
+              if(selectedIndex == 0){
+                print(' History Nothing here for now');
+              }
+              if(selectedIndex == 1){
+                print('About Nothing here for now');
+              }
+            },
+          ),
+        ],
         title: Text(
           LocaleStrings.title(),
         ),

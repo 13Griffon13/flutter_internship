@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internship_final_recipes/core/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'features/recipes_search/ui/search_result_presentation/bloc/search_bloc.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
