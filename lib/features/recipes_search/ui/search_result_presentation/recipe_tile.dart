@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:internship_final_recipes/features/recipes_search/domain/entities/recipe_entity.dart';
-import 'package:internship_final_recipes/features/recipes_search/ui/search_result_presentation/recipe_detail.dart';
+import 'package:internship_final_recipes/navigation/routes.gr.dart';
 import 'package:internship_final_recipes/util/hero_tags.dart';
 
 class RecipeTile extends StatelessWidget {
@@ -24,9 +25,7 @@ class RecipeTile extends StatelessWidget {
           title: Text(recipeEntity.label),
           trailing: Text(recipeEntity.calories.toString()),
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    RecipeDetail(recipeEntity: recipeEntity)));
+            context.router.push(RecipeDetailRoute(recipeEntity: recipeEntity));
           },
         ),
       ),

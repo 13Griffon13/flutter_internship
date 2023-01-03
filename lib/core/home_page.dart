@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:internship_final_recipes/locale/locale.dart';
+import 'package:internship_final_recipes/navigation/routes.gr.dart';
 
 import '../features/recipes_search/ui/recipes_search_home.dart';
 
@@ -26,7 +28,7 @@ class HomePage extends StatelessWidget {
             },
             onSelected: (selectedIndex){
               if(selectedIndex == 0){
-                print(' History Nothing here for now');
+                context.router.push(const HistoryScreenRoute());
               }
               if(selectedIndex == 1){
                 print('About Nothing here for now');

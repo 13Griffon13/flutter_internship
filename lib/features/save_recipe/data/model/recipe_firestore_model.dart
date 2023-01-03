@@ -25,6 +25,11 @@ class RecipeFirestoreModel with _$RecipeFirestoreModel {
         entity.ingredientLines,
       );
 
+}
+
+extension ToEntity on RecipeFirestoreModel{
+
+
   RecipeEntity toEntity() {
     return RecipeEntity(label, image, calories, ingredientLines);
   }

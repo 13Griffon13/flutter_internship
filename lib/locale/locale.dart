@@ -19,4 +19,5 @@ class LocaleStrings{
     return 'About app';
   }
 
+
 }

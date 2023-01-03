@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internship_final_recipes/core/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:internship_final_recipes/navigation/routes.gr.dart';
 
 import 'features/recipes_search/ui/search_result_presentation/bloc/search_bloc.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final AppRouter _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +24,13 @@ class MyApp extends StatelessWidget {
           create: (context) => SearchBloc(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage(),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
       ),
     );
   }
