@@ -4,7 +4,14 @@ import 'package:internship_final_recipes/features/history/ui/history_screen.dart
 import 'package:internship_final_recipes/features/recipes_search/ui/search_result_presentation/recipe_detail.dart';
 import 'package:internship_final_recipes/navigation/paths.dart';
 
+import '../core/logo_splash.dart';
+
 @MaterialAutoRouter(routes: [
+  AdaptiveRoute(
+    initial: true,
+    path: RoutePaths.splash,
+    page: AnimatedLogoSplash,
+  ),
   AdaptiveRoute(
     path: RoutePaths.home,
     page: HomePage,
