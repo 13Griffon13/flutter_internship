@@ -5,5 +5,8 @@
   "menuHistory":"History",
   "menuAbout":"About app",
   "saveButtonText":"Save",
-  "noInternetText":"No internet connection"
+  "noInternetText":"No internet connection",
+  "incrementalSort": "Incremental",
+  "decrementalSort": "Decremental",
+  "noSort": "No sort"
 }

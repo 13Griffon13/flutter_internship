@@ -22,6 +22,7 @@ dependencies:
   cloud_firestore: ^4.3.0
   auto_route: ^5.0.4
   lottie: ^2.1.0
+  connectivity_plus: ^3.0.2
 
 dev_dependencies:
   flutter_test:

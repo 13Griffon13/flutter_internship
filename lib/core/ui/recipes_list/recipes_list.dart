@@ -39,7 +39,7 @@ class RecipeList extends StatelessWidget {
                     items: SortType.values
                         .map((e) => DropdownMenuItem<SortType>(
                               value: e,
-                              child: Text(e.name),
+                              child: Text(e.localeKey.tr()),
                             ))
                         .toList(),
                     onChanged: (value) {

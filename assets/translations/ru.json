@@ -5,5 +5,8 @@
   "menuHistory":"История",
   "menuAbout":"О приложении",
   "saveButtonText":"Сохранить",
-  "noInternetText":"Остутсвует подключение"
+  "noInternetText":"Остутсвует подключение",
+  "incrementalSort": "По возрастанию",
+  "decrementalSort": "По убыванию",
+  "noSort": "Сортировка отсутсвует"
 }
