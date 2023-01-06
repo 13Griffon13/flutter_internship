@@ -19,5 +19,12 @@ class LocaleStrings{
     return 'About app';
   }
 
+  static String saveButtonText(){
+    return 'Save';
+  }
+
+  static String noInternetText(){
+    return 'No internet connection';
+  }
 
 }

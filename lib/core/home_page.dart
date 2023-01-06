@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
             },
             onSelected: (selectedIndex) {
               if (selectedIndex == 0) {
-                context.router.push(const HistoryScreenRoute());
+                context.router.push(HistoryScreenRoute());
               }
               if (selectedIndex == 1) {
                 _animationController.add(true);
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          const RecipesSearch(),
+          RecipesSearch(),
           AnimatedInfo(
             animationLauncher: _animationController.stream,
           ),

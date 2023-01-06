@@ -16,6 +16,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
           add(const HistoryEvent.updaeState());
         }),
         updaeState: (event) async {
+          print('UPDATE STATE!!!');
           final newList = await storageRepository.getSavedRecipes();
           emit(state.copyWith(recipes: newList));
         },
