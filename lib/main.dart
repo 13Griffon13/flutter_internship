@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,11 +6,22 @@ import 'package:internship_final_recipes/features/save_recipe/ui/bloc/history_bl
 import 'package:internship_final_recipes/navigation/routes.gr.dart';
 
 import 'features/recipes_search/ui/search_result_presentation/bloc/search_bloc.dart';
+import 'translations/codegen_loader.g.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(EasyLocalization(
+    path: 'assets/translations',
+    supportedLocales: const [
+      Locale('en'),
+      Locale('ru'),
+    ],
+    assetLoader: const CodegenLoader(),
+    fallbackLocale: const Locale('en'),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,6 +41,10 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        supportedLocales: context.supportedLocales,
+        localizationsDelegates: context.localizationDelegates,
+        locale: context.locale,
+
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,

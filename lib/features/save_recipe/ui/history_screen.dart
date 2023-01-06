@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internship_final_recipes/translations/locale_keys.g.dart';
 
 
 import '../../../core/ui/recipes_list/bloc/recipes_list_bloc.dart';
 import '../../../core/ui/recipes_list/bloc/recipes_list_event.dart';
 import '../../../core/ui/recipes_list/recipes_list.dart';
-import '../../../locale/locale.dart';
 import 'bloc/history_bloc.dart';
 import 'bloc/history_state.dart';
 
@@ -18,7 +19,7 @@ class HistoryScreen extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          LocaleStrings.menuHistory(),
+          LocaleKeys.menuHistory.tr(),
         ),
       ),
       body: BlocListener<HistoryBloc, HistoryState>(

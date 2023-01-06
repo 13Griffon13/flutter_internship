@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internship_final_recipes/features/recipes_search/ui/search_interface/bloc/search_interface_bloc.dart';
 import 'package:internship_final_recipes/features/recipes_search/ui/search_interface/bloc/search_interface_event.dart';
 import 'package:internship_final_recipes/features/recipes_search/ui/search_interface/bloc/search_interface_state.dart';
-import 'package:internship_final_recipes/locale/locale.dart';
+import 'package:internship_final_recipes/translations/locale_keys.g.dart';
 
 class SearchInterface extends StatelessWidget {
   final SearchInterfaceBloc interfaceBloc = SearchInterfaceBloc();
@@ -63,7 +64,7 @@ class _RequestField extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           decoration: InputDecoration(
-            hintText: LocaleStrings.searchHint(),
+            hintText: LocaleKeys.searchHint.tr(),
           ),
           onChanged: (value) {
             bloc.add(SearchInterfaceEvent.requestChanged(value));

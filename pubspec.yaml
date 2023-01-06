@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  easy_localization: ^3.0.1
+  shared_preferences: ^2.0.15
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   dartz: ^0.10.1
@@ -35,4 +37,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/polite_chicky.json
+    - assets/translations/
 

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_bloc.dart';
@@ -6,7 +7,7 @@ import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_state.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/recipe_tile.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/sort_types.dart';
-import 'package:internship_final_recipes/locale/locale.dart';
+import 'package:internship_final_recipes/translations/locale_keys.g.dart';
 
 import '../../../navigation/routes.gr.dart';
 
@@ -73,7 +74,7 @@ class RecipeList extends StatelessWidget {
                         },
                       )
                     : Center(
-                        child: Text(LocaleStrings.emptySearch()),
+                        child: Text(LocaleKeys.emptySearch.tr()),
                       ),
               ),
             ],

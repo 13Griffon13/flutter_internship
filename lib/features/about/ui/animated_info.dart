@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:internship_final_recipes/translations/locale_keys.g.dart';
 
-import '../../../locale/locale.dart';
 
 class AnimatedInfo extends StatefulWidget {
   final Stream<bool> animationLauncher;
@@ -87,7 +88,7 @@ class _AnimatedInfoState extends State<AnimatedInfo>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(LocaleStrings.menuAbout()),
+            Text(LocaleKeys.menuAbout.tr()),
             FutureBuilder<String>(
               future: _getVersion(),
               builder: (context, snapshot) {
