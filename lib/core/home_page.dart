@@ -1,12 +1,17 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:internship_final_recipes/features/about/ui/animated_info.dart';
 import 'package:internship_final_recipes/locale/locale.dart';
 import 'package:internship_final_recipes/navigation/routes.gr.dart';
 
 import '../features/recipes_search/ui/recipes_search_home.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+
+  final StreamController<bool> _animationController = StreamController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +31,12 @@ class HomePage extends StatelessWidget {
                 ),
               ];
             },
-            onSelected: (selectedIndex){
-              if(selectedIndex == 0){
-                context.router.push(const HistoryScreenRoute());
+            onSelected: (selectedIndex) {
+              if (selectedIndex == 0) {
+                context.router.push(HistoryScreenRoute());
               }
-              if(selectedIndex == 1){
-                print('About Nothing here for now');
+              if (selectedIndex == 1) {
+                _animationController.add(true);
               }
             },
           ),
@@ -40,7 +45,14 @@ class HomePage extends StatelessWidget {
           LocaleStrings.title(),
         ),
       ),
-      body: const RecipesSearch(),
+      body: Stack(
+        children: [
+          RecipesSearch(),
+          AnimatedInfo(
+            animationLauncher: _animationController.stream,
+          ),
+        ],
+      ),
     );
   }
 }

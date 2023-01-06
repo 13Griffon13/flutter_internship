@@ -8,6 +8,7 @@ part 'recipe_firestore_model.g.dart';
 @freezed
 class RecipeFirestoreModel with _$RecipeFirestoreModel {
   const factory RecipeFirestoreModel(
+      String uri,
     String label,
     String image,
     double calories,
@@ -19,6 +20,7 @@ class RecipeFirestoreModel with _$RecipeFirestoreModel {
 
   factory RecipeFirestoreModel.fromEntity(RecipeEntity entity) =>
       RecipeFirestoreModel(
+        entity.uri,
         entity.label,
         entity.image,
         entity.calories,
@@ -31,6 +33,6 @@ extension ToEntity on RecipeFirestoreModel{
 
 
   RecipeEntity toEntity() {
-    return RecipeEntity(label, image, calories, ingredientLines);
+    return RecipeEntity(uri ,label, image, calories, ingredientLines);
   }
 }

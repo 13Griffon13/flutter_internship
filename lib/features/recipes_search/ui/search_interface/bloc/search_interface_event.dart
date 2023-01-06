@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../util/sort_types.dart';
+import '../../../../../core/ui/recipes_list/sort_types.dart';
 
 part 'search_interface_event.freezed.dart';
 

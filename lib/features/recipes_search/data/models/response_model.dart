@@ -178,6 +178,7 @@ class Recipe {
 
   RecipeEntity toEntity() {
     return RecipeEntity(
+      uri ?? '',
       label ?? 'unknown',
       image ?? '_',
       calories?? -1,

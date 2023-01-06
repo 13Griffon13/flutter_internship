@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:internship_final_recipes/features/save_recipe/ui/bloc/history_bloc.dart';
 import 'package:internship_final_recipes/navigation/routes.gr.dart';
 
 import 'features/recipes_search/ui/search_result_presentation/bloc/search_bloc.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => HistoryBloc(),
+        ),
         BlocProvider(
           create: (context) => SearchBloc(),
         ),
