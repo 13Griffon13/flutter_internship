@@ -33,7 +33,10 @@ class RecipeTile extends StatelessWidget {
         child: ListTile(
           leading: Hero(
             tag: '${HeroTags.recipeDetail}_${recipeEntity.label}',
-            child: Image.network(recipeEntity.image),
+            child: SizedBox(
+              width: 60,
+                height: 60,
+                child: Image.network(recipeEntity.image),),
           ),
           title: Text(recipeEntity.label),
           trailing: Text(recipeEntity.calories.toString()),
