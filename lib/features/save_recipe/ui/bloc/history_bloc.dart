@@ -13,17 +13,13 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
 
   HistoryBloc() : super(const HistoryState([])) {
     on<HistoryEvent>((event, emit) async {
-      await event.map(
-        addItem: ((event) async {
-          await storageRepository.saveRecipe(event.recipeEntity);
-        }),
-        updateState: (event) async {
-          emit(state.copyWith(recipes: event.recipes));
-        },
-        deleteItem: (deleteItem)async{
-          await storageRepository.deleteRecipe(deleteItem.recipeEntity);
-        }
-      );
+      await event.map(addItem: ((event) async {
+        await storageRepository.saveRecipe(event.recipeEntity);
+      }), updateState: (event) async {
+        emit(state.copyWith(recipes: event.recipes));
+      }, deleteItem: (deleteItem) async {
+        await storageRepository.deleteRecipe(deleteItem.recipeEntity);
+      });
     });
     updateSubscription = storageRepository.updateStream().listen((event) {
       add(HistoryEvent.updateState(event));

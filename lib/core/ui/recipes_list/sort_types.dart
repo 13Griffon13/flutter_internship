@@ -6,5 +6,6 @@ enum SortType {
   none(LocaleKeys.noSort);
 
   const SortType(this.localeKey);
+
   final String localeKey;
 }

@@ -22,7 +22,7 @@ class _AnimatedLogoSplashState extends State<AnimatedLogoSplash>
     _controller = AnimationController(vsync: this);
 
     _controller.addStatusListener((status) {
-      if(status == AnimationStatus.completed){
+      if (status == AnimationStatus.completed) {
         context.router.replace(HomePageRoute());
       }
     });

@@ -5,7 +5,7 @@ part 'recipe_entity.freezed.dart';
 @freezed
 class RecipeEntity with _$RecipeEntity {
   factory RecipeEntity(
-      String uri,
+    String uri,
     String label,
     String image,
     double calories,

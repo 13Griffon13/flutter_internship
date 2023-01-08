@@ -22,7 +22,7 @@ class RecipesSearch extends StatefulWidget {
 }
 
 class _RecipesSearchState extends State<RecipesSearch> {
-   late final RecipeListBloc recipeListBloc;
+  late final RecipeListBloc recipeListBloc;
 
   @override
   void initState() {

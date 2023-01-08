@@ -25,19 +25,19 @@ class EdamamRepository extends ApiRepository {
       },
     );
     try {
-    final response = await http.get(url);
-    if (response.statusCode >= 200 && response.statusCode < 300) {
+      final response = await http.get(url);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
         final decodedJson = jsonDecode(response.body) as Map<String, dynamic>;
         final parsedModel = Response.fromJson(decodedJson);
         return Right(
           parsedModel.hits!.map((e) => e.recipe!.toEntity()).toList(),
         );
-    } else {
-      return Left(Failure(
-        response.reasonPhrase ?? 'Unknown error',
-        response.statusCode,
-      ));
-    }
+      } else {
+        return Left(Failure(
+          response.reasonPhrase ?? 'Unknown error',
+          response.statusCode,
+        ));
+      }
     } catch (e) {
       return Left(Failure(
         e.toString(),
