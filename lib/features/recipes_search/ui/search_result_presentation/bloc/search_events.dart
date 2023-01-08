@@ -4,6 +4,7 @@ part 'search_events.freezed.dart';
 
 @freezed
 class SearchEvent with _$SearchEvent {
-  const factory SearchEvent.searchRequestSent(String request) =
-      _SearchRequestSent;
+  const factory SearchEvent.requestChanged(String request) = _RequestChanged;
+
+  const factory SearchEvent.sendRequest(String request) = _SendRequest;
 }

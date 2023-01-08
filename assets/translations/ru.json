@@ -8,5 +8,8 @@
   "noInternetText":"Остутсвует подключение",
   "incrementalSort": "По возрастанию",
   "decrementalSort": "По убыванию",
-  "noSort": "Сортировка отсутсвует"
+  "noSort": "Сортировка отсутсвует",
+  "about": "О приложении:",
+  "versionCode": "Код версии:{code}",
+  "versionName":"Название версии:{name}"
 }

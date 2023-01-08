@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internship_final_recipes/features/save_recipe/ui/bloc/history_events.dart';
 import 'package:internship_final_recipes/translations/locale_keys.g.dart';
-
 
 import '../../../core/ui/recipes_list/bloc/recipes_list_bloc.dart';
 import '../../../core/ui/recipes_list/bloc/recipes_list_event.dart';
@@ -10,7 +10,7 @@ import '../../../core/ui/recipes_list/recipes_list.dart';
 import 'bloc/history_bloc.dart';
 import 'bloc/history_state.dart';
 
-class HistoryScreen extends StatefulWidget{
+class HistoryScreen extends StatefulWidget {
   const HistoryScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   void initState() {
     _recipeListBloc = RecipeListBloc()
-    ..add(RecipeListEvent.setList(context.read<HistoryBloc>().state.recipes));
+      ..add(RecipeListEvent.setList(context.read<HistoryBloc>().state.recipes));
     super.initState();
   }
 
@@ -48,6 +48,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
         },
         child: RecipeList(
           recipeListBloc: _recipeListBloc,
+          onDismiss: (recipeEntity) {
+            context
+                .read<HistoryBloc>()
+                .add(HistoryEvent.deleteItem(recipeEntity));
+          },
         ),
       ),
     );

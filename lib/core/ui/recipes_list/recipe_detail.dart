@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internship_final_recipes/features/recipes_search/domain/entities/recipe_entity.dart';
+import 'package:internship_final_recipes/core/domain/recipe_entity.dart';
 
 import '../../../util/hero_tags.dart';
 

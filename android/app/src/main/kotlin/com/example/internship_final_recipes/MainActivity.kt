@@ -4,8 +4,8 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
-class MainActivity: FlutterActivity() {
-    private val CHANNEL = "todos.flutter.dev/versionInfo"
+class MainActivity : FlutterActivity() {
+    private val CHANNEL = "recipes.flutter.dev/versionInfo"
 
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
@@ -13,21 +13,27 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
             // This method is invoked on the main thread.
                 call, result ->
-            when(call.method){
-                "getVersion"->{
-                    result.success(getVersion())
+            when (call.method) {
+                "getVersionCode" -> {
+                    result.success(getVersionCode())
                 }
-                else ->{
+                "getVersionName" -> {
+                    result.success(getVersionName())
+                }
+                else -> {
                     result.notImplemented()
                 }
             }
         }
     }
 
-    fun getVersion():String{
+    fun getVersionCode(): String {
         val versionCode = BuildConfig.VERSION_CODE
+        return versionCode.toString()
+    }
+
+    fun getVersionName(): String {
         val versionName = BuildConfig.VERSION_NAME
-        return "Version code:${versionCode}\n" +
-                "Version name:${versionName}"
+        return versionName
     }
 }

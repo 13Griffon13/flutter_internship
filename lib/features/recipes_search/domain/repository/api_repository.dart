@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../entities/failure.dart';
-import '../entities/recipes_list.dart';
-
+import '../../../../core/domain/failure.dart';
+import '../../../../core/domain/recipe_entity.dart';
 
 abstract class ApiRepository {
-  Future<Either<Failure, RecipesList>> searchRecipes(String request);
+  Future<Either<Failure, List<RecipeEntity>>> searchRecipes(String request);
 }

@@ -1,5 +1,4 @@
-
-import '../../domain/entities/recipe_entity.dart';
+import '../../../../core/domain/recipe_entity.dart';
 
 class Response {
   String? q;
@@ -181,8 +180,8 @@ class Recipe {
       uri ?? '',
       label ?? 'unknown',
       image ?? '_',
-      calories?? -1,
-      ingredientLines?? [],
+      calories ?? -1,
+      ingredientLines ?? [],
     );
   }
 }

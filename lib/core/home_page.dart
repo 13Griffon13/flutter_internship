@@ -20,28 +20,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           PopupMenuButton(
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem<int>(
-                  value: 0,
-                  child: Text(LocaleKeys.menuHistory.tr()),
-                ),
-                PopupMenuItem<int>(
-                  value: 1,
-                  child: Text(LocaleKeys.menuAbout.tr()),
-                ),
-              ];
-            },
-            onSelected: (selectedIndex) {
-              if (selectedIndex == 0) {
-                context.router.push(HistoryScreenRoute());
-              }
-              if (selectedIndex == 1) {
-                _animationController.add(true);
-              }
-            },
-          ),
-          PopupMenuButton(
             icon: const Icon(Icons.translate),
             itemBuilder: (context) {
               return [
@@ -56,11 +34,33 @@ class HomePage extends StatelessWidget {
               ];
             },
             onSelected: (value) {
-              if(value == 0){
+              if (value == 0) {
                 context.setLocale(const Locale('en'));
               }
-              if(value == 1){
+              if (value == 1) {
                 context.setLocale(const Locale('ru'));
+              }
+            },
+          ),
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Text(LocaleKeys.menuHistory.tr()),
+                ),
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Text(LocaleKeys.menuAbout.tr()),
+                ),
+              ];
+            },
+            onSelected: (selectedIndex) {
+              if (selectedIndex == 0) {
+                context.router.push(const HistoryScreenRoute());
+              }
+              if (selectedIndex == 1) {
+                _animationController.add(true);
               }
             },
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/sort_types.dart';
 
-import '../../../../features/recipes_search/domain/entities/recipe_entity.dart';
+import '../../../domain/recipe_entity.dart';
 import 'recipes_list_event.dart';
 import 'recipes_list_state.dart';
 
