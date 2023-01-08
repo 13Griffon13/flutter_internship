@@ -31,15 +31,20 @@ class RecipeTile extends StatelessWidget {
       child: SizedBox(
         height: 80.0,
         child: ListTile(
+          contentPadding: const EdgeInsets.all(10.0),
           leading: Hero(
             tag: '${HeroTags.recipeDetail}_${recipeEntity.label}',
             child: SizedBox(
               width: 60,
-                height: 60,
-                child: Image.network(recipeEntity.image),),
+              height: 60,
+              child: Image.network(recipeEntity.image),
+            ),
           ),
-          title: Text(recipeEntity.label),
-          trailing: Text(recipeEntity.calories.toString()),
+          title: Text(
+            recipeEntity.label,
+            overflow: TextOverflow.fade,
+          ),
+          trailing: Text(recipeEntity.calories.toStringAsFixed(2)),
           onTap: onTap,
           onLongPress: onLongPress,
         ),

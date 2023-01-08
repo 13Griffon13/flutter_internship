@@ -41,15 +41,17 @@ class _RecipesSearchState extends State<RecipesSearch> {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        TextField(
-          decoration: InputDecoration(
-            hintText: LocaleKeys.searchHint.tr(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: LocaleKeys.searchHint.tr(),
+            ),
+            onChanged: (value) {
+              context.read<SearchBloc>().add(SearchEvent.requestChanged(value));
+            },
           ),
-          onChanged: (value) {
-            context.read<SearchBloc>().add(SearchEvent.requestChanged(value));
-          },
         ),
-        //todo revisit this part
         Flexible(
           child: BlocConsumer<SearchBloc, SearchState>(
             bloc: context.read<SearchBloc>(),

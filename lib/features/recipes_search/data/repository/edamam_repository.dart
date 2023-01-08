@@ -24,24 +24,24 @@ class EdamamRepository extends ApiRepository {
         'app_key': ApiKeys.appKey,
       },
     );
+    try {
     final response = await http.get(url);
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      try {
         final decodedJson = jsonDecode(response.body) as Map<String, dynamic>;
         final parsedModel = Response.fromJson(decodedJson);
         return Right(
           parsedModel.hits!.map((e) => e.recipe!.toEntity()).toList(),
         );
-      } catch (e) {
-        return Left(Failure(
-          'Parsing error',
-          null,
-        ));
-      }
     } else {
       return Left(Failure(
         response.reasonPhrase ?? 'Unknown error',
         response.statusCode,
+      ));
+    }
+    } catch (e) {
+      return Left(Failure(
+        e.toString(),
+        null,
       ));
     }
   }

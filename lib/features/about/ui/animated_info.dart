@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:internship_final_recipes/translations/locale_keys.g.dart';
 
-
 class AnimatedInfo extends StatefulWidget {
   final Stream<bool> animationLauncher;
 
@@ -31,7 +30,7 @@ class _AnimatedInfoState extends State<AnimatedInfo>
     });
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 7),
+      duration: const Duration(seconds: 6),
       vsync: this,
     );
 
@@ -41,19 +40,19 @@ class _AnimatedInfoState extends State<AnimatedInfo>
             begin: const Offset(0.0, 5.0),
             end: const Offset(0.0, 2.0),
           ),
-          weight: 1),
+          weight: 0.6),
       TweenSequenceItem(
           tween: Tween(
             begin: const Offset(0.0, 2.0),
             end: const Offset(0.0, 2.0),
           ),
-          weight: 5),
+          weight: 5.0),
       TweenSequenceItem(
           tween: Tween(
             begin: const Offset(0.0, 2.0),
             end: const Offset(0.0, -2.0),
           ),
-          weight: 1),
+          weight: 0.4),
     ]).animate(_controller);
 
     _controller.addStatusListener(
@@ -85,21 +84,24 @@ class _AnimatedInfoState extends State<AnimatedInfo>
           color: Colors.blue,
           borderRadius: BorderRadius.circular(15.0),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(LocaleKeys.menuAbout.tr()),
-            FutureBuilder<String>(
-              future: _getVersion(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(snapshot.data!);
-                } else {
-                  return const Placeholder();
-                }
-              },
-            )
-          ],
+        child: Center(
+          child: FutureBuilder<String>(
+            future: _getVersion(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  snapshot.data!,
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                );
+              } else {
+                return const Placeholder();
+              }
+            },
+          ),
         ),
       ),
     );
@@ -108,9 +110,11 @@ class _AnimatedInfoState extends State<AnimatedInfo>
   Future<String> _getVersion() async {
     try {
       const chanel = MethodChannel("todos.flutter.dev/versionInfo");
-      final String version = await chanel.invokeMethod('getVersion');
-      return '''Info:
-        $version''';
+      final String versionCode = await chanel.invokeMethod('getVersionCode');
+      final String versionName = await chanel.invokeMethod('getVersionName');
+      return '${LocaleKeys.about.tr()}\n'
+          '${LocaleKeys.versionCode.tr(namedArgs: {'code': versionCode})}\n'
+          '${LocaleKeys.versionName.tr(namedArgs: {'name': versionName})}\n';
     } catch (e) {
       return '''Exception occurred 
       $e''';

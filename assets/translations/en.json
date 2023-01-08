@@ -8,5 +8,8 @@
   "noInternetText":"No internet connection",
   "incrementalSort": "Incremental",
   "decrementalSort": "Decremental",
-  "noSort": "No sort"
+  "noSort": "No sort",
+  "about": "App Info:",
+  "versionCode": "Version code:{code}",
+  "versionName":"Version name:{name}"
 }
