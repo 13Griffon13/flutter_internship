@@ -109,7 +109,7 @@ class _AnimatedInfoState extends State<AnimatedInfo>
 
   Future<String> _getVersion() async {
     try {
-      const chanel = MethodChannel("todos.flutter.dev/versionInfo");
+      const chanel = MethodChannel("recipes.flutter.dev/versionInfo");
       final String versionCode = await chanel.invokeMethod('getVersionCode');
       final String versionName = await chanel.invokeMethod('getVersionName');
       return '${LocaleKeys.about.tr()}\n'

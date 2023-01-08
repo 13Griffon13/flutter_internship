@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internship_final_recipes/core/domain/recipe_entity.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_bloc.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_event.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_state.dart';
@@ -15,10 +16,16 @@ class RecipeList extends StatelessWidget {
   final Widget? header;
   final RecipeListBloc recipeListBloc;
 
+  //not sure that is the correct way to do it,
+  //probably i need interact with outside widgets with the bloc/controller
+  //if i decide using it but with bloc it realisation will be kind of messy
+  final Function(RecipeEntity recipeEntity)? onDismiss;
+
   const RecipeList({
     Key? key,
     this.header,
     required this.recipeListBloc,
+    this.onDismiss,
   }) : super(key: key);
 
   @override
@@ -69,6 +76,11 @@ class RecipeList extends StatelessWidget {
                                 recipeListBloc
                                     .add(RecipeListEvent.selectItem(position));
                               }
+                            },
+                            onDismiss: (direction) {
+                              recipeListBloc.add(RecipeListEvent.setList(
+                                  [...state.recipes]..removeAt(position)));
+                              onDismiss?.call((state.recipes[position]));
                             },
                           );
                         },

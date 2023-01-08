@@ -32,6 +32,17 @@ class FirestoreRepository extends StorageRepository {
         .toList());
   }
 
+  @override
+  Future deleteRecipe(RecipeEntity recipeEntity) async{
+    final newTodoDoc = FirebaseFirestore.instance
+        .collection(_collectionPath)
+        .doc(recipeEntity.label);
+    await newTodoDoc.delete();
+    final storageRef = FirebaseStorage.instance;
+    await storageRef.refFromURL(recipeEntity.image).delete();
+  }
+
+
   Future<String> _saveImageToStorage(String imageUrl, String label) async {
     final url = Uri.parse(imageUrl);
     final response = await http.get(url);
@@ -46,4 +57,5 @@ class FirestoreRepository extends StorageRepository {
       throw Exception('Failed to save image');
     }
   }
+
 }

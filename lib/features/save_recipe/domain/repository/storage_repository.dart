@@ -8,6 +8,7 @@ abstract class StorageRepository{
 
   Future init();
   Future saveRecipe(RecipeEntity recipeEntity);
+  Future deleteRecipe(RecipeEntity recipeEntity);
   Stream<List<RecipeEntity>> updateStream();
 
 }

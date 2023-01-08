@@ -5,7 +5,7 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
-    private val CHANNEL = "todos.flutter.dev/versionInfo"
+    private val CHANNEL = "recipes.flutter.dev/versionInfo"
 
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {

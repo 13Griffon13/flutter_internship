@@ -20,6 +20,9 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         updateState: (event) async {
           emit(state.copyWith(recipes: event.recipes));
         },
+        deleteItem: (deleteItem)async{
+          await storageRepository.deleteRecipe(deleteItem.recipeEntity);
+        }
       );
     });
     updateSubscription = storageRepository.updateStream().listen((event) {
