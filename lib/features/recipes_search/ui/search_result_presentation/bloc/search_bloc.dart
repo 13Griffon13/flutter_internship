@@ -20,7 +20,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
               emit(SearchState.error(failure.errorMessage));
             },
             (recipesList) {
-              //todo add auto sort after search
               emit(SearchState.withData(recipesList));
             },
           );

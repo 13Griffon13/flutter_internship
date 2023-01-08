@@ -52,8 +52,7 @@ class _RequestField extends StatelessWidget {
     return BlocConsumer<SearchInterfaceBloc, SearchInterfaceState>(
       bloc: bloc,
       listenWhen: (previous, current) {
-        //todo fix this part
-        return current.readyToSend;
+        return current.readyToSend && !previous.readyToSend;
       },
       listener: (context, state) {
         onListenerTriggered(state.request);

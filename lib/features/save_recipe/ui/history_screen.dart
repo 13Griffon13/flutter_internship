@@ -10,9 +10,28 @@ import '../../../core/ui/recipes_list/recipes_list.dart';
 import 'bloc/history_bloc.dart';
 import 'bloc/history_state.dart';
 
-class HistoryScreen extends StatelessWidget{
-  HistoryScreen({Key? key}) : super(key: key);
-  final RecipeListBloc _recipeListBloc = RecipeListBloc();
+class HistoryScreen extends StatefulWidget{
+  const HistoryScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HistoryScreen> createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
+  late final RecipeListBloc _recipeListBloc;
+
+  @override
+  void initState() {
+    _recipeListBloc = RecipeListBloc()
+    ..add(RecipeListEvent.setList(context.read<HistoryBloc>().state.recipes));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _recipeListBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +44,6 @@ class HistoryScreen extends StatelessWidget{
       body: BlocListener<HistoryBloc, HistoryState>(
         bloc: context.read<HistoryBloc>(),
         listener: (context, state) {
-          //todo fix this issue
           _recipeListBloc.add(RecipeListEvent.setList(state.recipes));
         },
         child: RecipeList(

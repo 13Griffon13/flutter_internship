@@ -27,16 +27,16 @@ class FirestoreRepository extends StorageRepository {
       await storageRef.putData(response.bodyBytes);
       final storedImageUrl = await storageRef.getDownloadURL();
       final updatedEntity = recipeEntity.copyWith(image: storedImageUrl);
-      await newRecipeDoc.set(RecipeFirestoreModel.fromEntity(updatedEntity).toJson());
+      await newRecipeDoc
+          .set(RecipeFirestoreModel.fromEntity(updatedEntity).toJson());
     }
   }
 
   @override
-  Future<List<RecipeEntity>> getSavedRecipes() async {
-    final collection =
-        await FirebaseFirestore.instance.collection(_collectionPath).get();
-    return collection.docs
+  Stream<List<RecipeEntity>> updateStream(){
+    final collection = FirebaseFirestore.instance.collection(_collectionPath);
+    return collection.snapshots().map((event) => event.docs
         .map((e) => RecipeFirestoreModel.fromJson(e.data()).toEntity())
-        .toList();
+        .toList());
   }
 }

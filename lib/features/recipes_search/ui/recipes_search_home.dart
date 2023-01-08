@@ -81,6 +81,7 @@ class RecipesSearch extends StatelessWidget {
                   onPressed: () {
                     final historyBloc = context.read<HistoryBloc>();
                     for (var index in recipeListBloc.state.selected) {
+                      recipeListBloc.add(const RecipeListEvent.deselectAll());
                       historyBloc.add(HistoryEvent.addItem(
                           recipeListBloc.state.recipes[index]));
                     }
