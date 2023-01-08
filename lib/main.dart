@@ -13,17 +13,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
 
-  //todo move locale wrapper to separate class
-  runApp(EasyLocalization(
-    path: 'assets/translations',
-    supportedLocales: const [
-      Locale('en'),
-      Locale('ru'),
-    ],
-    assetLoader: const CodegenLoader(),
-    fallbackLocale: const Locale('en'),
-    child: MyApp(),
-  ));
+  runApp(const EasyLocalisationWrapper());
 }
 
 class MyApp extends StatelessWidget {
@@ -53,6 +43,24 @@ class MyApp extends StatelessWidget {
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
       ),
+    );
+  }
+}
+
+class EasyLocalisationWrapper extends StatelessWidget {
+  const EasyLocalisationWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return EasyLocalization(
+      path: 'assets/translations',
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ru'),
+      ],
+      assetLoader: const CodegenLoader(),
+      fallbackLocale: const Locale('en'),
+      child: MyApp(),
     );
   }
 }
