@@ -2,7 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../recipes_search/domain/entities/recipe_entity.dart';
+import '../../../../core/domain/recipe_entity.dart';
 
 part 'history_state.freezed.dart';
 

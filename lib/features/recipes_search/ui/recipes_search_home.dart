@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_bloc.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/bloc/recipes_list_event.dart';
 import 'package:internship_final_recipes/features/connectivity_checker/ui/bloc/connectivity_state.dart';
+import 'package:internship_final_recipes/features/recipes_search/ui/search_result_presentation/bloc/search_events.dart';
 import 'package:internship_final_recipes/features/recipes_search/ui/search_result_presentation/bloc/search_state.dart';
 import 'package:internship_final_recipes/features/save_recipe/ui/bloc/history_bloc.dart';
 import 'package:internship_final_recipes/features/save_recipe/ui/bloc/history_events.dart';
@@ -11,24 +12,41 @@ import 'package:internship_final_recipes/translations/locale_keys.g.dart';
 
 import '../../../core/ui/recipes_list/recipes_list.dart';
 import '../../connectivity_checker/ui/bloc/connectivity_bloc.dart';
-import 'search_interface/search_interface.dart';
 import 'search_result_presentation/bloc/search_bloc.dart';
-import 'search_result_presentation/bloc/search_events.dart';
 
-class RecipesSearch extends StatelessWidget {
-  RecipesSearch({Key? key}) : super(key: key);
-  final RecipeListBloc recipeListBloc = RecipeListBloc();
+class RecipesSearch extends StatefulWidget {
+  const RecipesSearch({Key? key}) : super(key: key);
+
+  @override
+  State<RecipesSearch> createState() => _RecipesSearchState();
+}
+
+class _RecipesSearchState extends State<RecipesSearch> {
+   late final RecipeListBloc recipeListBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    recipeListBloc = RecipeListBloc();
+  }
+
+  @override
+  void dispose() {
+    recipeListBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        SearchInterface(
-          onRequestSent: (request) {
-            context
-                .read<SearchBloc>()
-                .add(SearchEvent.searchRequestSent(request));
+        TextField(
+          decoration: InputDecoration(
+            hintText: LocaleKeys.searchHint.tr(),
+          ),
+          onChanged: (value) {
+            context.read<SearchBloc>().add(SearchEvent.requestChanged(value));
           },
         ),
         //todo revisit this part
@@ -36,29 +54,34 @@ class RecipesSearch extends StatelessWidget {
           child: BlocConsumer<SearchBloc, SearchState>(
             bloc: context.read<SearchBloc>(),
             listener: (context, state) {
-              state.mapOrNull(withData: (state) {
-                recipeListBloc
-                    .add(RecipeListEvent.setList(state.recipesList.recipes));
-              });
+              recipeListBloc.add(RecipeListEvent.setList(state.recipesList));
+            },
+            buildWhen: (previous, current) {
+              return current.searchRequest.wasProcessed;
             },
             builder: (context, state) {
-              return state.map(withData: (stateWithData) {
-                return RecipeList(
-                  recipeListBloc: recipeListBloc,
-                );
-              }, loading: (loadingState) {
-                return const Expanded(
-                  child: Center(
+              switch (state.searchStage) {
+                case SearchStage.completed:
+                  return RecipeList(
+                    recipeListBloc: recipeListBloc,
+                  );
+                case SearchStage.loading:
+                  return const Center(
                     child: CircularProgressIndicator(),
-                  ),
-                );
-              }, error: (errorState) {
-                return Expanded(
-                  child: Center(
-                    child: Text(errorState.errorMessage),
-                  ),
-                );
-              });
+                  );
+                case SearchStage.error:
+                  return Center(
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.error,
+                          color: Colors.red,
+                        ),
+                        Text(state.error ?? ''),
+                      ],
+                    ),
+                  );
+              }
             },
           ),
         ),

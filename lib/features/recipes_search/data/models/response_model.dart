@@ -1,5 +1,5 @@
 
-import '../../domain/entities/recipe_entity.dart';
+import '../../../../core/domain/recipe_entity.dart';
 
 class Response {
   String? q;

@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:internship_final_recipes/core/ui/recipes_list/sort_types.dart';
 
-import '../../../../features/recipes_search/domain/entities/recipe_entity.dart';
+import '../../../domain/recipe_entity.dart';
 
 part 'recipes_list_event.freezed.dart';
 

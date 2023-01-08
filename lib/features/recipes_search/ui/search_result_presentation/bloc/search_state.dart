@@ -1,19 +1,22 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:internship_final_recipes/features/recipes_search/domain/entities/search_request.dart';
 
-import '../../../domain/entities/recipes_list.dart';
+import '../../../../../core/domain/recipe_entity.dart';
 
 part 'search_state.freezed.dart';
 
 @freezed
 class SearchState with _$SearchState {
+  const factory SearchState({
+    required List<RecipeEntity> recipesList,
+    required SearchRequest searchRequest,
+    required SearchStage searchStage,
+    String? error,
+  }) = _SearchState;
+}
 
-  const factory SearchState.withData(
-    RecipesList recipesList,
-  ) = _SearchStateWithData;
-
-  const factory SearchState.loading() = _SearchStateLoading;
-
-  const factory SearchState.error(
-    String errorMessage,
-  ) = _SearchStateError;
+enum SearchStage {
+  completed,
+  loading,
+  error,
 }
