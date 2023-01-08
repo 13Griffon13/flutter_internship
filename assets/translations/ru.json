@@ -1,0 +1,12 @@
+{
+  "title":"Рецепты",
+  "searchHint":"Поиск",
+  "emptySearch":"Ничего не найдено",
+  "menuHistory":"История",
+  "menuAbout":"О приложении",
+  "saveButtonText":"Сохранить",
+  "noInternetText":"Остутсвует подключение",
+  "incrementalSort": "По возрастанию",
+  "decrementalSort": "По убыванию",
+  "noSort": "Сортировка отсутсвует"
+}

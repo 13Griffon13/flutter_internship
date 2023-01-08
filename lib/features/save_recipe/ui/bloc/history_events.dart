@@ -9,6 +9,6 @@ part 'history_events.freezed.dart';
 class HistoryEvent with _$HistoryEvent{
 
   const factory HistoryEvent.addItem(RecipeEntity recipeEntity) = _AddItem;
-  const factory HistoryEvent.updaeState() = _UpdateState;
+  const factory HistoryEvent.updateState(List<RecipeEntity> recipes) = _UpdateState;
 
 }
