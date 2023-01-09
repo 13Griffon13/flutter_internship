@@ -43,7 +43,12 @@ class RecipeTile extends StatelessWidget {
               child: SizedBox(
                 width: 60,
                 height: 60,
-                child: Image.network(recipeEntity.image),
+                child: Image.network(
+                  recipeEntity.image,
+                  errorBuilder: (context, exception, stackTrace) {
+                    return const Icon(Icons.error);
+                  },
+                ),
               ),
             ),
             title: Text(
